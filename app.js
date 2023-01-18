@@ -1,19 +1,25 @@
 console.log("Hi!");
 
-const getCountryByName = (countryName) => {
-    const response = fetch(`https://restcountries.com/v3.1/name/${countryName}`)
-    .then((response) => response.json()) //takes the response and puts it into JSON format
-    .then((data) => console.log(data));
+const getCountryByName = async (countryName) => {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+    const jsonData = await response.json(); //takes the response and puts it into JSON format
+    const accessSection = document.querySelector("section");
+    console.log(jsonData);
+    jsonData.forEach(country => {
+        const textContainer = document.createElement("p");
+        textContainer.textContent = country.name.common;
+        accessSection.appendChild(textContainer);
+    })
+    // document.querySelector("body").appendChild(textContainer);
 }
-
-getCountryByName("uk");
+getCountryByName("america");
 
 
 //  You'll need to access specific properties within the returned object, such as name. 
 //need to do await fetch for country name 
 //convert this data to json
 //need to access the section
-//insert the information into the section? - might need to use div?
+//insert the information into the section? - might need to use div? 
 
 
 
