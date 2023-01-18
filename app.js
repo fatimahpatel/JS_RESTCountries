@@ -1,18 +1,23 @@
 console.log("Hi!");
 
+
+//get country by name
 const getCountryByName = async (countryName) => {
     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
     const jsonData = await response.json(); //takes the response and puts it into JSON format
-    const accessSection = document.querySelector("section");
+    const accessSection = document.querySelector("section"); //selecting the section
     console.log(jsonData);
-    jsonData.forEach(country => {
+    jsonData.forEach(country => { //looping through each country
+
+        //adding name and population to textContainer
         const textContainer = document.createElement("p");
-        textContainer.textContent = country.name.common;
+        textContainer.textContent = country.name.common + country.population;
         accessSection.appendChild(textContainer);
+
     })
-    // document.querySelector("body").appendChild(textContainer);
 }
 getCountryByName("america");
+
 
 
 //  You'll need to access specific properties within the returned object, such as name. 
