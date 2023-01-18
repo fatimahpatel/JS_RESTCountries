@@ -14,29 +14,32 @@ const addCountryNameAndPopulation = (jsonData) =>{
 }
 
 //get country by name
-const getCountryByName = async (countryForm) => {
-    const response = await fetch(`https://restcountries.com/v3.1/name/${countryForm}`)
+const getCountryByName = async (countryName) => {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
     const jsonDataForOneCountry = await response.json(); //takes the response and puts it into JSON format
     console.log(jsonDataForOneCountry);
     addCountryNameAndPopulation(jsonDataForOneCountry);
 }
 
 // new function to display name and population of all countries
-const getAllCountries = async () =>{
+const getAllCountries = async (countryForm) =>{
     const response = await fetch("https://restcountries.com/v3.1/all");
     const jsonDataForAllCountries = await response.json();
     console.log(jsonDataForAllCountries);
     addCountryNameAndPopulation(jsonDataForAllCountries);
+    
+    const filter = await fetch(`https://restcountries.com/v3.1/${countryForm}`)
+    console.log(countryForm)
+
+
+    //add eventlistener for enter
+    enter.addEventListener('submit', getCountryByName)
 }
 
 //create a form which inputs name of country and filters information on front end by calling the getCountryByName() function
 //could create a new function which stores 
 
-const filterCountries = (event) =>{
-    getCountryByName(countryForm);
-}
 
-countryForm.addEventListener('submit', filterCountries);
 
 
 
