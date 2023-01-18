@@ -1,11 +1,12 @@
 console.log("Hi!");
+const enter = document.querySelector("#enter");
+const countryForm = document.querySelector("#country-form");
 
 //function for inputting country name and population to p tag
 
 const addCountryNameAndPopulation = (jsonData) =>{
     jsonData.forEach(country => { //looping through each country
         const accessSection = document.querySelector("section"); //selecting the section
-
         //adding name and population to textContainer
         const textContainer = document.createElement("p");
         textContainer.textContent = country.name.common + " " + country.population;
@@ -13,8 +14,8 @@ const addCountryNameAndPopulation = (jsonData) =>{
 }
 
 //get country by name
-const getCountryByName = async (countryName) => {
-    const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+const getCountryByName = async (countryForm) => {
+    const response = await fetch(`https://restcountries.com/v3.1/name/${countryForm}`)
     const jsonDataForOneCountry = await response.json(); //takes the response and puts it into JSON format
     console.log(jsonDataForOneCountry);
     addCountryNameAndPopulation(jsonDataForOneCountry);
@@ -28,10 +29,14 @@ const getAllCountries = async () =>{
     addCountryNameAndPopulation(jsonDataForAllCountries);
 }
 
+//create a form which inputs name of country and filters information on front end by calling the getCountryByName() function
+//could create a new function which stores 
 
+const filterCountries = (event) =>{
+    getCountryByName(countryForm);
+}
 
-
-
+countryForm.addEventListener('submit', filterCountries);
 
 
 
