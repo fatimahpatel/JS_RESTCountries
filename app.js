@@ -18,26 +18,21 @@ const getCountryByName = async (countryName) => {
     const jsonDataForOneCountry = await response.json(); //takes the response and puts it into JSON format
     console.log(jsonDataForOneCountry);
     addCountryNameAndPopulation(jsonDataForOneCountry);
-
-    // jsonData.forEach(country => { //looping through each country
-        // //adding name and population to textContainer
-        // const textContainer = document.createElement("p");
-        // textContainer.textContent = country.name.common + country.population;
-        // accessSection.appendChild(textContainer);
-    // })
 }
 
-//new function to display name and population of all countries
-// const getAllCountries = async () =>{
-//     const response = await fetch("https://restcountries.com/v3.1");
-//     const jsonData = await response.json();
-// }
+// new function to display name and population of all countries
+const getAllCountries = async () =>{
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    const jsonDataForAllCountries = await response.json();
+    console.log(jsonDataForAllCountries);
+    addCountryNameAndPopulation(jsonDataForAllCountries);
+}
 
 
 
 
-getCountryByName("germany");
-// getAllCountries();
+// getCountryByName("germany");
+getAllCountries();
 
 
 
