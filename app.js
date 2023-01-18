@@ -31,8 +31,14 @@ const getAllCountries = async () =>{
 
 
 
+
+
+
+
 // getCountryByName("germany");
-getAllCountries();
+// getAllCountries();
+
+
 
 
 
